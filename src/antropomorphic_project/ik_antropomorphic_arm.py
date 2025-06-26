@@ -28,13 +28,13 @@ class AntroArmIK:
         r2 = self.get_dh_param("r2")
         r3 = self.get_dh_param("r3")
 
-        print("Input Data===== ELBOW CONFIG = "+str(elbow_config))
-        print("Px_ee = "+str(Px_ee))
-        print("Py_ee = "+str(Py_ee))
-        print("Pz_ee = "+str(Pz_ee))
-        print("r1 = "+str(r1))
-        print("r2 = "+str(r2))
-        print("r3 = "+str(r3))
+        # print("Input Data===== ELBOW CONFIG = "+str(elbow_config))
+        # print("Px_ee = "+str(Px_ee))
+        # print("Py_ee = "+str(Py_ee))
+        # print("Pz_ee = "+str(Pz_ee))
+        # print("r1 = "+str(r1))
+        # print("r2 = "+str(r2))
+        # print("r3 = "+str(r3))
 
         theta_1 = atan2(Py_ee, Px_ee)
         r = sqrt(Px_ee**2 + Py_ee**2)
@@ -71,11 +71,12 @@ class AntroArmIK:
             theta_3 = (theta_3 + pi) % (2*pi) - pi
 
             # Joint limits
-            if not (-pi/4 <= theta_2 <= 3*pi/4 and -3*pi/4 <= theta_3 <= 3*pi/4):
-                solution_possible = False
-                theta_array = []
-            else:
-                theta_array = [theta_1, theta_2, theta_3]
+            # if not (-pi/4 <= theta_2 <= 3*pi/4 and -3*pi/4 <= theta_3 <= 3*pi/4):
+            #     solution_possible = False
+            #     theta_array = []
+            # else:
+            #     theta_array = [theta_1, theta_2, theta_3]
+            theta_array = [theta_1, theta_2, theta_3]
 
         return theta_array, solution_possible
 

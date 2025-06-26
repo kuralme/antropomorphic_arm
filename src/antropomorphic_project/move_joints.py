@@ -26,7 +26,6 @@ class JointMover(object):
         self.pub_joint3 = rospy.Publisher('/antropomorphic_arm/joint3_position_controller/command',
                                                            Float64,
                                                            queue_size=1)
-
         self.check_connection()
 
     def move_all_joints(self, theta_1, theta_2, theta_3):
@@ -75,7 +74,7 @@ class JointMover(object):
 
 
 if __name__ == "__main__":
-    rospy.init_node('move',log_level=rospy.DEBUG)
+    rospy.init_node('move')
     obj = JointMover()
     # Plus-plus
     theta_pos_1 = [0.7853981633974483, 0.09188093307208842, 1.0471975511965976]

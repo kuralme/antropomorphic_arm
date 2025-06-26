@@ -3,20 +3,34 @@ project(antropomorphic_project)
 
 find_package(catkin REQUIRED COMPONENTS
   rospy
+  message_generation
+  geometry_msgs
 )
 catkin_python_setup()
 
 
-catkin_package(
- CATKIN_DEPENDS rospy
+add_message_files(
+      FILES
+      EndEffector.msg 
+)
+generate_messages(
+      DEPENDENCIES
+      std_msgs
+      geometry_msgs
 )
 
+catkin_package(
+  CATKIN_DEPENDS rospy message_runtime 
+
+)
 
 include_directories(
+	launch
   ${catkin_INCLUDE_DIRS}
 )
 
 catkin_install_python(PROGRAMS
+  src/antropomorphic_project/antropomorphic_end_effector_mover.py
   src/antropomorphic_project/ik_antropomorphic_arm.py
   src/antropomorphic_project/fk_antropomorphic_arm.py
   src/antropomorphic_project/generate_matrixes.py

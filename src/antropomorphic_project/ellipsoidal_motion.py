@@ -86,7 +86,7 @@ class EE_Client(object):
             ee_msg.ee_xy_theta = ee_pose
             ee_msg.elbow_policy.data = elbow_policy
 
-            print("Ellipse Point="+str(ee_pose)+", elbow="+str(elbow_policy))
+            # print("Ellipse Point="+str(ee_pose)+", elbow="+str(elbow_policy))
             self.pub_end_effector_commads.publish(ee_msg)
 
             self._rate.sleep()

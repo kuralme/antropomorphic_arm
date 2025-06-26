@@ -1,0 +1,13 @@
+<launch>
+
+    <node name="antropomorphic_end_effector_mover_node" pkg="antropomorphic_project"
+          type="antropomorphic_end_effector_mover.py" respawn="false"
+          output="screen" args="" />
+
+    <node name="ellipsoidal_motion_node" pkg="antropomorphic_project"
+          type="ellipsoidal_motion.py" respawn="false"
+          output="screen" args="" />
+
+    <node name="rviz" pkg="rviz" type="rviz" args="-d $(find antropomorphic_project)/rviz/antropomorphic_3dof.rviz"/>
+          
+</launch>
