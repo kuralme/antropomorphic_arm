@@ -16,7 +16,12 @@ include_directories(
   ${catkin_INCLUDE_DIRS}
 )
 
-catkin_install_python(PROGRAMS ${python_scripts_DIR}
-                      DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION})
-
-
+catkin_install_python(PROGRAMS
+  src/antropomorphic_project/ik_antropomorphic_arm.py
+  src/antropomorphic_project/fk_antropomorphic_arm.py
+  src/antropomorphic_project/generate_matrixes.py
+  src/antropomorphic_project/ellipsoidal_motion.py
+  src/antropomorphic_project/move_joints.py
+  src/antropomorphic_project/rviz_marker.py
+  DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
+)
