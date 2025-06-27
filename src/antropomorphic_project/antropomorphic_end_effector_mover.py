@@ -57,7 +57,6 @@ class AntroEEMover(object):
         while not rospy.is_shutdown():
             if self.pose_queue:
                 ee_msg = self.pose_queue.pop(0)
-                elbow_policy = ee_msg.elbow_policy.data
                 self.last_goal_pose = ee_msg.ee_xy_theta
                 goal_x = ee_msg.ee_xy_theta.x
                 goal_y = ee_msg.ee_xy_theta.y
@@ -67,9 +66,10 @@ class AntroEEMover(object):
                 self.marker.publish_point(goal_x, goal_y, goal_z)
 
                 # Use IK solver to get joint angles
+                elbow_config = "plus" # Elbow up
+                wrist_config = "minus" # Wrist down
                 ee_pose = EndEffectorWorkingSpace3D(Px_ee=goal_x, Py_ee=goal_y, Pz_ee=goal_z)
-                elbow_config = "down" if elbow_policy == "plus-minus" else "up"
-                theta_array, solution_possible = self.ik_solver.compute_ik(ee_pose, elbow_config=elbow_config)
+                theta_array, solution_possible = self.ik_solver.compute_ik(ee_pose, elbow_config, wrist_config)
 
                 if solution_possible and len(theta_array) == 3:
                     theta_1, theta_2, theta_3 = theta_array
